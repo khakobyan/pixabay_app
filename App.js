@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import type {Node} from 'react';
 import {
   SafeAreaView,
@@ -25,6 +25,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import SplashScreen from 'react-native-splash-screen';
 
 /* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
  * LTI update could not be added via codemod */
@@ -55,6 +56,11 @@ const Section = ({children, title}): Node => {
 };
 
 const App: () => Node = () => {
+
+  useEffect(() => {
+    SplashScreen.hide();
+  }, [])
+  
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
