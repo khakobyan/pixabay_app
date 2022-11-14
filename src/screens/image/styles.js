@@ -31,6 +31,7 @@ export default StyleSheet.create({
     height: 50,
     width: 150,
     marginTop: heightPercentageToDP('4'),
+    marginBottom: heightPercentageToDP('2'),
     backgroundColor: colors.GREEN,
     borderRadius: 10,
     alignItems: 'center',

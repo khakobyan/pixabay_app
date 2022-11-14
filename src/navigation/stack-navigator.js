@@ -33,7 +33,21 @@ export const StackNavigator = () => {
         }}
       />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
-      
+        <Stack.Screen
+          name={SCREENS.AUTHOR}
+          component={screens.AuthorScreen}
+          options={{
+            headerStyle: {
+              backgroundColor: colors.GREEN,
+            },
+            headerTitleAlign: 'center',
+            headerTitle: 'Information About Author',
+            headerTitleStyle: {
+              color: colors.WHITE,
+            },
+            headerTintColor: colors.WHITE,
+          }}
+        />
         {/* <Stack.Screen name="ChecklistDetails" component={ChecklistDetails} />
         <Stack.Screen name="ChecklistChangePassword" component={ChangePassword} /> */}
       </Stack.Group>

@@ -19,6 +19,7 @@ export default StyleSheet.create({
     height: 100,
   },
   contentContainer: {
+    width: '60%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',

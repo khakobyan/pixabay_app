@@ -1,9 +1,11 @@
 import React from 'react';
-import { Image, ScrollView, Text, TouchableOpacity, View, Share } from 'react-native';
-
+import { Image, ScrollView, Text, TouchableOpacity, View, Share, Linking } from 'react-native';
 import { PXContainer } from 'src/components';
 
+import { SCREENS } from '@utils';
+
 import { useSelector } from 'react-redux';
+
 import styles from './styles';
 
 export const ImageScreen = ({navigation, route}) => {
@@ -31,7 +33,6 @@ export const ImageScreen = ({navigation, route}) => {
     }
   };
   
-  console.log('current', item);
   return (
     <PXContainer>
       <ScrollView
@@ -47,7 +48,7 @@ export const ImageScreen = ({navigation, route}) => {
         <View style={styles.contentContainer}>
           <TouchableOpacity 
             style={styles.textButton}
-            onPress={() => console.log('1111')}
+            onPress={() => navigation.navigate(SCREENS.AUTHOR, { author: item.user })}
           >
             <Text style={styles.textButtonTitle}>Author: {item.user}</Text>
           </TouchableOpacity>
@@ -58,7 +59,7 @@ export const ImageScreen = ({navigation, route}) => {
           <Text style={styles.text}>Likes: <Text style={{fontWeight: '600'}}>{item.likes}</Text></Text>
           <TouchableOpacity
             style={styles.textButton}
-            onPress={() => console.log('1111')}
+            onPress={() => Linking.openURL(item.pageURL)}
           >
             <Text style={styles.textButtonTitle}>Website</Text>
           </TouchableOpacity>
