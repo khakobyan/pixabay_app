@@ -31,6 +31,8 @@ module.exports = {
           '@screens': './src/screens',
           '@navigation': './src/navigation',
           '@store': './src/store',
+          '@helpers': './src/helpers',
+          '@assets': './assets',
         },
       },
     ],
