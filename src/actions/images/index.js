@@ -12,13 +12,14 @@ export const setImagesLoading = bool => {
 	}
 };
 
-export const fetchImages = (query_string) => dispatch => {
+export const fetchImages = (query_string, page = 1) => dispatch => {
   dispatch(setImagesLoading(true));
-  api.get(FETCH_IMAGES_BY_QUERY(query_string))
+  api.get(FETCH_IMAGES_BY_QUERY(query_string, page))
   .then(res => {
     dispatch({
       type: SET_IMAGES,
-      payload: res.data.hits
+      payload: res.data.hits,
+      is_new_list: page == 1,
     });
     dispatch(setImagesLoading(false));
   })

@@ -1,18 +1,24 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
 
-import { PXContainer, PXSearch, PXList } from '@components';
+import { PXContainer, PXSearch, PXList } from 'src/components';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchImages } from '@actions';
+import { fetchImages } from 'src/actions';
 
 export const HomeScreen = () => {
   const [searchInput, setSearchInput] = useState('');
-
+  const [page, setPage] = useState(1);
   const dispatch = useDispatch();
   const { images, loading } = useSelector(state => state.images);
 
-  console.log('images', loading)
+  const getMoreData = () => {
+    if (page <= 26) {
+      dispatch(fetchImages(searchInput, page + 1));
+      setPage(page + 1);
+    }
+  };
+
   return (
     <PXContainer>
       <View>
@@ -22,7 +28,11 @@ export const HomeScreen = () => {
           onSearchPress={() => dispatch(fetchImages(searchInput))}
           loading={loading}
         />
-        <PXList data={images}/>
+        <PXList 
+          data={images}
+          getMore={getMoreData}
+          loading={loading}
+        />
       </View>
     </PXContainer>
   )

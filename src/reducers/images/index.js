@@ -10,7 +10,7 @@ export default (state = INITIAL_STATE, action) => {
     case SET_IMAGES:
       return {
         ...state,
-        images: action.payload,
+        images: action.is_new_list ? action.payload : [...state.images, ...action.payload],
       };
     case SET_IMAGES_LOADING:
       return {
