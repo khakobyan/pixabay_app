@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@env": [".env"],
+      "@utils": ["./src/utils"],
+      "@components": ["./src/components"],
+      "@services": ["./src/services"],
+      "@screens": ["./src/screens"],
+      "@navigation": ["./src/navigation"],
+      "@store": ["./src/store"],
+      "@helpers": ["./src/helpers"],
+      "@assets": ["./assets"],
+      "@actions": ["./src/actions"],
+      "@providers": ["./src/providers"],
+    }
+  }
+}
