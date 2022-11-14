@@ -1,10 +1,16 @@
 import React from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { useDimensions } from 'src/providers';
+import { useNavigation } from '@react-navigation/native';
+
+import { SCREENS } from 'src/utils';
+
 import styles from './styles';
 
-export function PXListItem({item}) {
-  const { isLandscape } = useDimensions()
+export function PXListItem({item, index}) {
+  const { isLandscape } = useDimensions();
+
+  const navigation = useNavigation();
 
   return (
     <TouchableOpacity
@@ -12,7 +18,7 @@ export function PXListItem({item}) {
         ...styles.container,
         width: isLandscape ? '46%' : '100%',
       }}
-      // onPress={() => navigation.navigate('Article', { item })}
+      onPress={() => navigation.navigate(SCREENS.IMAGE, { index })}
     >
       <Image 
         source={{

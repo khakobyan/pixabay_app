@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
+
 import { ActivityIndicator, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Search } from 'assets';
+
 import styles from './styles';
-import { Search } from '@assets';
-import { colors } from '@utils';
+
+import { colors } from 'src/utils';
+
 import { useDimensions } from 'src/providers';
 
 export const PXSearch = ({

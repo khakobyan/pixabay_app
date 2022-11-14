@@ -13,10 +13,13 @@ export const HomeScreen = () => {
   const { images, loading } = useSelector(state => state.images);
 
   const getMoreData = () => {
-    if (page <= 26) {
-      dispatch(fetchImages(searchInput, page + 1));
-      setPage(page + 1);
-    }
+    dispatch(fetchImages(searchInput, page + 1));
+    setPage(page + 1);
+  };
+
+  const searchPress = () => {
+    dispatch(fetchImages(searchInput));
+    setPage(1);
   };
 
   return (
@@ -25,7 +28,7 @@ export const HomeScreen = () => {
         <PXSearch 
           value={searchInput}
           onChange={setSearchInput}
-          onSearchPress={() => dispatch(fetchImages(searchInput))}
+          onSearchPress={searchPress}
           loading={loading}
         />
         <PXList 

@@ -1,9 +1,9 @@
-import { colors } from '@utils';
 import React from 'react';
 import { ActivityIndicator, FlatList, Text } from 'react-native';
 import { useDimensions } from 'src/providers';
 import { PXListItem } from './item';
 import styles from './styles';
+import { colors } from 'src/utils';
 
 export function PXList({
   data,
@@ -12,7 +12,7 @@ export function PXList({
 }) {
   const { isLandscape } = useDimensions();
 
-  const renderItem = ({item}) => <PXListItem item={item}/>;
+  const renderItem = ({item, index}) => <PXListItem item={item} index={index}/>;
   const renderFooterComponent = () => loading && data.length ? <ActivityIndicator size='large' color={colors.GREEN}/> : null;
   const renderEmptyComponent = () => <Text style={styles.emptyText}>There is no image by search criteria, please try again!</Text>;
 
