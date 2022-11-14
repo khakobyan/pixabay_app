@@ -48,8 +48,6 @@ export const StackNavigator = () => {
             headerTintColor: colors.WHITE,
           }}
         />
-        {/* <Stack.Screen name="ChecklistDetails" component={ChecklistDetails} />
-        <Stack.Screen name="ChecklistChangePassword" component={ChangePassword} /> */}
       </Stack.Group>
     </Stack.Navigator>
   );

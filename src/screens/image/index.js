@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, ScrollView, Text, TouchableOpacity, View, Share, Linking } from 'react-native';
+import { Image, ScrollView, View, Share, Linking } from 'react-native';
 import { PXButton, PXContainer, PXTextButton, PXTextInfo } from 'src/components';
 
 import { SCREENS } from '@utils';

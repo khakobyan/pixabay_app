@@ -1,6 +1,4 @@
 import { StyleSheet } from 'react-native';
-import { heightPercentageToDP } from 'src/helpers';
-import { colors } from 'src/utils';
 
 export default StyleSheet.create({
   container: {
