@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image, ScrollView, Text, TouchableOpacity, View, Share, Linking } from 'react-native';
-import { PXContainer } from 'src/components';
+import { PXButton, PXContainer, PXTextButton, PXTextInfo } from 'src/components';
 
 import { SCREENS } from '@utils';
 
@@ -40,38 +40,27 @@ export const ImageScreen = ({navigation, route}) => {
         showsVerticalScrollIndicator={false}
       >
         <Image 
+          style={styles.image}
           source={{
             uri: item.largeImageURL
           }}
-          style={styles.image}
         />
         <View style={styles.contentContainer}>
-          <TouchableOpacity 
-            style={styles.textButton}
-            onPress={() => navigation.navigate(SCREENS.AUTHOR, { author: item.user })}
-          >
-            <Text style={styles.textButtonTitle}>Author: {item.user}</Text>
-          </TouchableOpacity>
-          <Text style={styles.text}>Tags: <Text style={{fontWeight: '600'}}>{item.tags}</Text></Text>
-          <Text style={styles.text}>Resolutions: <Text style={{fontWeight: '600'}}>{item.imageWidth} X {item.imageHeight}</Text></Text>
-          <Text style={styles.text}>Downloads: <Text style={{fontWeight: '600'}}>{item.downloads}</Text></Text>
-          <Text style={styles.text}>Comments: <Text style={{fontWeight: '600'}}>{item.comments}</Text></Text>
-          <Text style={styles.text}>Likes: <Text style={{fontWeight: '600'}}>{item.likes}</Text></Text>
-          <TouchableOpacity
-            style={styles.textButton}
+          <PXTextButton 
+            onPress={() => navigation.navigate(SCREENS.AUTHOR, { author: item.user })} 
+            title={`Author: ${item.user}`}
+          />
+          <PXTextInfo label='Tags' info={item.tags} />
+          <PXTextInfo label='Resolutions' info={`${item.imageWidth} X ${item.imageHeight}`} />
+          <PXTextInfo label='Downloads' info={item.downloads} />
+          <PXTextInfo label='Comments' info={item.comments} />
+          <PXTextInfo label='Likes' info={item.likes} />
+          <PXTextButton
             onPress={() => Linking.openURL(item.pageURL)}
-          >
-            <Text style={styles.textButtonTitle}>Website</Text>
-          </TouchableOpacity>
+            title='Website'
+          />
         </View>
-        <TouchableOpacity 
-          style={styles.button}
-          onPress={onShare}
-        >
-          <Text style={styles.buttonTitle}>
-            SEND
-          </Text>
-        </TouchableOpacity>
+        <PXButton onPress={onShare} title='SEND' />
       </ScrollView>
     </PXContainer>
   )
