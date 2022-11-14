@@ -11,7 +11,6 @@ export default StyleSheet.create({
   input: {
     width: '75%',
     borderWidth: 2,
-    borderColor: colors.GREEN,
     borderRadius: 12,
     paddingHorizontal: widthPercentageToDP('3')
   },
@@ -19,7 +18,6 @@ export default StyleSheet.create({
     width: '20%',
     borderRadius: 12,
     paddingHorizontal: widthPercentageToDP('2'),
-    backgroundColor: colors.GREEN,
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -30,5 +28,8 @@ export default StyleSheet.create({
     fontWeight: '600',
     alignSelf: 'center',
     marginRight: '20%',
-  }
+  },
+  indicator: {
+    marginLeft: '35%',
+  },
 });

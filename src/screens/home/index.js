@@ -1,24 +1,29 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, ScrollView, TextInput } from 'react-native';
+import React, { useState } from 'react';
+import { View } from 'react-native';
 
-import { PXContainer, PXSearch } from '@components';
+import { PXContainer, PXSearch, PXList } from '@components';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchImages } from '@actions';
 
 export const HomeScreen = () => {
+  const [searchInput, setSearchInput] = useState('');
+
+  const dispatch = useDispatch();
+  const { images, loading } = useSelector(state => state.images);
+
+  console.log('images', loading)
   return (
     <PXContainer>
-      <ScrollView 
-        showsVerticalScrollIndicator={false}
-        // contentContainerStrryle={styles.container}
-      >
-        <PXSearch />
-        {/* <View style={styles.topContainer}>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            <CloseIcon />
-          </TouchableOpacity>
-        </View>
-        <Text style={{...styles.titleText, color: colors.text}}>{article.text}</Text> */}
-        {/* <Text style={{...styles.descText, color: colors.text}}>{article.text}</Text> */}
-      </ScrollView>
+      <View>
+        <PXSearch 
+          value={searchInput}
+          onChange={setSearchInput}
+          onSearchPress={() => dispatch(fetchImages(searchInput))}
+          loading={loading}
+        />
+        <PXList data={images}/>
+      </View>
     </PXContainer>
   )
 }

@@ -1,41 +1,46 @@
-import React, { useEffect, useState } from 'react';
-import { Text, TextInput, TouchableOpacity, View, Dimensions } from 'react-native';
+import React, { useState } from 'react';
+import { ActivityIndicator, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import styles from './styles';
 import { Search } from '@assets';
 import { colors } from '@utils';
+import { useDimensions } from 'src/providers';
 
 export const PXSearch = ({
   value,
   onChange,
-  onSearch,
+  onSearchPress,
+  loading
 }) => {
-  const [isLandscape, setIsLandscape] = useState(Dimensions.get('window').width > Dimensions.get('window').height ? true : false)
-  
-  const handleDimensionsChange = () => Dimensions.get('window').width > Dimensions.get('window').height ? setIsLandscape(true) : setIsLandscape(false);
+  const [isFocused, setIsFocused] = useState(false)
 
-  useEffect(() => {
-    Dimensions.addEventListener('change', handleDimensionsChange);
+  const { isLandscape } = useDimensions();
 
-    return () => {
-      Dimensions.removeListener('change', handleDimensionsChange);
-    }
-  }, [])
-  
   return (
     <View style={styles.container}>
       <TextInput 
-        style={styles.input}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
+        style={{...styles.input, borderColor: isFocused ? colors.GREEN : colors.LIGHT_GREY}}
         placeholderTextColor={colors.LIGHT_GREY}
         placeholder='Image name'
         value={value}
         onChangeText={onChange}
       />
       <TouchableOpacity 
-        style={{...styles.button, justifyContent: isLandscape ? 'space-between' : 'center'}}
-        onPress={onSearch}
+        style={{
+          ...styles.button,
+          justifyContent: isLandscape ? 'space-between' : 'center',
+          backgroundColor: !value.length ? colors.LIGHT_GREY : colors.GREEN
+        }}
+        onPress={onSearchPress}
+        disabled={!value.length}
       >
-        <Search width={20} height={20} color={colors.WHITE} />
-        {isLandscape && <Text style={styles.buttonTitle}>Search</Text>}
+        { loading ? <ActivityIndicator size='large' color={colors.WHITE} style={isLandscape && styles.indicator}/> :
+          <>
+            <Search width={20} height={20} color={colors.WHITE} />
+            {isLandscape && <Text style={styles.buttonTitle}>Search</Text>}
+          </>
+        }
       </TouchableOpacity>
     </View>
   );

@@ -16,15 +16,10 @@ export const fetchImages = (query_string) => dispatch => {
   dispatch(setImagesLoading(true));
   api.get(FETCH_IMAGES_BY_QUERY(query_string))
   .then(res => {
-    console.log('res', res)
-    // let arr = [];
-
-    // res.data.map(item => arr.push(JSON.parse(item[0])))
-
-    // dispatch({
-    //   type: SET_IMAGES,
-    //   payload: arr
-    // });
+    dispatch({
+      type: SET_IMAGES,
+      payload: res.data.hits
+    });
     dispatch(setImagesLoading(false));
   })
   .catch(e => {

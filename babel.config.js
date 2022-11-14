@@ -33,6 +33,8 @@ module.exports = {
           '@store': './src/store',
           '@helpers': './src/helpers',
           '@assets': './assets',
+          '@actions': './src/actions',
+          '@providers': './src/providers',
         },
       },
     ],

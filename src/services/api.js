@@ -2,7 +2,7 @@ import axios from 'axios'
 import { BASE_URL } from '@env'
 
 const axiosApiConfig = {
-  baseURL: `${BASE_URL}?key=${PIXABAY_API_KEY}&`,
+  baseURL: `${BASE_URL}`,
   timeout: 5000,
 };
 

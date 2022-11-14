@@ -9,6 +9,8 @@ import { store } from '@store';
 
 import { RootNavigation } from '@navigation';
 
+import { DimensionsProvider } from 'src/providers';
+
 const App = () => {
   useEffect(() => {
     SplashScreen.hide();
@@ -16,8 +18,10 @@ const App = () => {
 
   return (
     <SafeAreaProvider>
-      <StatusBar translucent backgroundColor='transparent' barStyle="dark-content" />
-      <RootNavigation />
+      <DimensionsProvider>
+        <StatusBar translucent backgroundColor='transparent' barStyle="dark-content" />
+        <RootNavigation />
+      </DimensionsProvider>
     </SafeAreaProvider>
   );
 };
